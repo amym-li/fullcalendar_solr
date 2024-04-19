@@ -2,7 +2,7 @@ name: FullCalendar Solr
 type: module
 description: "Provides a View display style that renders a Year Calendar compatible with Search API"
 package: Views
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 dependencies:
   - drupal:views
   - search_api:search_api
