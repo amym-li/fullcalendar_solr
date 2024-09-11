@@ -52,20 +52,22 @@ The Search API backend needs to support the `search_api_facets` option.
 ### Creating a Year View
 
 1. At `/admin/structure/views`, click `Add view`. Under `View settings > Show`,
-select an index.
-1. Create a Page. Set the display format to `FullCalendar Solr`.
+select a Solr index.
+1. Create a Page.
+2. Set the Display Format to `FullCalendar Solr`.
 1. Configure the page path such that the last component is 'year'.
 (e.g. `/a/b/c/year`)
 1. Under `Fields`, add a string field containing a date in YYYY-MM-DD format.
 Any dates not in YYYY-MM-DD format will not be displayed in the calendar.
+    - Ensure that the date field selected is an indexed field by the Solr Index chosen.
 1. Under `Advanced > Contextual Filters`, select a filter containing year
 values in YYYY format.
 1. Edit the year contextual filter.
     1. Under `When the filter value is NOT available`, select
     `Provide default value`.
-    1. Set the type to `Raw value from URL` and set the path component number.
-1. Under `Format > FullCalendar Solr Settings`, configure the date and year
-fields.
+    1. Set the type to `Raw value from URL`
+    2. Set the Path Component to the index of where `year` is located in the path. (e.g. for `/a/b/c/year`, the Path Component should be set to 4)
+1. Under `Format > FullCalendar Solr Settings`, set the Date Field to the field created in step 5 and the Year Field to the field created in step 6.
 1. Add any additional view configurations as needed.
 1. Save the view.
 
@@ -77,7 +79,7 @@ highlighted date is clicked.
 
 1. Edit the year view page. Under `Format > FullCalendar Solr Settings`, check
 the `Navigation Links to Day View` option and save.
-1. Click `Add > Page`. This will be the new day view.
+1. Click `Add > Page`. This will be the new Day View.
 1. Select a display style. (One that is not `FullCalendar Solr`)
 1. Under `Advanced > Contextual Filter`, add a filter containing a string date
 in YYYY-MM-DD format. This should be the same as the date field used in the
@@ -85,10 +87,9 @@ year view.
     - If the date field is not available, try adding the field to the Search
     API Index.
 1. Configure the page path. The path of this view should be the same as the
-path of the year view except the last URL component is 'day' instead of 'year'
+path of the Year View except the last URL component is 'day' instead of 'year'
 (i.e. if the year view has path `/a/b/c/year`, the day view must have path
 `/a/b/c/day`).
-**Note:** The year and day view should have the same contextual filters.
 1. Add any additional view configurations as needed.
 1. Save the view.
 
@@ -100,7 +101,7 @@ the result itself instead of the day view.
 
 1. **Prerequisites:** Navigation Links are enabled and a day view is set up.
 (See [Creating a Day View](#creating-a-day-view))
-1. Edit the year view page.
+1. Edit the Year View page.
 1. Under `Fields`, add a field containing an item path or URL.
 1. Under `Format > FullCalendar Solr Settings`, check the `Link to Item`
 option.
